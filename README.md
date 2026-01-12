@@ -1,4 +1,4 @@
-# Neuro-Fuzzy-Energy-and-Power-Management-for-Electric-Vehicles
+# Neuro-Fuzzy-EV-Power-Management
 Neuro-fuzzy (ANFIS) power management system for electric vehicles using simulated BMS data
 
 This project focuses on the design and simulation of a **neuro-fuzzy decision system** for **power limitation in electric vehicles**, inspired by concepts commonly found in **Battery Management Systems (BMS)**.
