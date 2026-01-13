@@ -72,3 +72,5 @@ By separating safety constraints from adaptive logic, the proposed architecture 
 * Hardware-in-the-loop (HIL) testing.
 * Real-time embedded deployment.
 * Integration with existing BMS software stacks.
+* Offline simulation-based validation
+* Rule surface inspection
