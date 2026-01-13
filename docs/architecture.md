@@ -55,7 +55,53 @@ The SoC variable uses a mix of Trapezoidal and Triangular membership functions t
     * **Rationale:** Represents the **Regenerative Braking Saturation** zone.
     * **Design:** The function activates early (at 70%) to allow the system to anticipate saturation. As SoC approaches 100%, the battery's ability to accept current (regenerative braking) drops to zero; the neuro-fuzzy system uses this region to derate input power limits progressively.
 
+### 4.2 Battery Temperature Modeling
+
+**Domain:**  
+- Temperature range: 20 °C – 120 °C
+
+Battery temperature is a critical variable influencing both **power capability** and **long-term degradation**. While extreme thermal conditions are handled by hard safety constraints, the neuro-fuzzy system operates within non-critical regions to **anticipate thermal stress and apply progressive power derating**.
+
+The temperature input is modeled using three linguistic categories to balance interpretability and control resolution.
+
+#### Linguistic Labels
+- {Cold, Ideal, Hot}
+
 ---
+
+#### Membership Function Design
+
+**Cold (Trapezoidal)**  
+- Approximate range: 20 °C – 35 °C  
+- Rationale:  
+  Low temperatures increase internal resistance and reduce instantaneous power delivery. In this region, the control strategy prioritizes battery heating and limits aggressive power demands to prevent voltage sag and efficiency losses.  
+  A trapezoidal function ensures full activation at very low temperatures, with a smooth transition toward normal operation as temperature increases.
+
+---
+
+**Ideal (Triangular)**  
+- Approximate range: 30 °C – 50 °C (peak around 40 °C)  
+- Rationale:  
+  This region represents the optimal thermal operating window under load, where electrochemical efficiency is high and thermal stress is minimized.  
+  The triangular shape reflects that optimal behavior decreases progressively as the system moves away from this thermal equilibrium point.
+
+---
+
+**Hot (Trapezoidal)**  
+- Approximate range: 45 °C – 120 °C  
+- Rationale:  
+  Elevated temperatures accelerate aging mechanisms and increase the risk of thermal runaway if left unmanaged.  
+  The membership function activates early (around 45 °C) to enable **anticipatory power derating**, allowing the system to reduce thermal load before hard protection thresholds are reached.  
+  Temperatures exceeding the safe operational envelope are handled exclusively by the hard safety layer, outside the neuro-fuzzy controller.
+
+---
+
+#### Design Considerations
+
+- Membership functions intentionally overlap to ensure smooth transitions and avoid control oscillations.
+- Thermal runaway and extreme over-temperature events are explicitly excluded from the fuzzy inference system.
+- The design supports gradual power limitation rather than abrupt cut-offs, improving drivability and system stability.
+
 
 ## 5. Scope and Assumptions
 
