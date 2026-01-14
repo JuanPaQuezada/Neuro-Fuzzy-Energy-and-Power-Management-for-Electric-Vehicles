@@ -102,6 +102,54 @@ The temperature input is modeled using three linguistic categories to balance in
 - Thermal runaway and extreme over-temperature events are explicitly excluded from the fuzzy inference system.
 - The design supports gradual power limitation rather than abrupt cut-offs, improving drivability and system stability.
 
+### 4.3 Driving Style Modeling
+
+**Domain:**  
+- Normalized range: [0, 1]
+
+Driving style is modeled as a **normalized high-level indicator** representing the dynamic load behavior imposed by the driver. Raw vehicle dynamics are processed externally to compute a Driving Style Index (DSI), which serves as the input to the neuro-fuzzy inference system.
+
+This abstraction decouples sensor-level variability from control logic, while preserving sensitivity to aggressive load patterns.
+
+---
+
+#### Linguistic Labels
+- {Smooth, Normal, Aggressive}
+
+---
+
+#### Membership Function Design
+
+**Smooth (Trapezoidal)**  
+- Approximate range: 0.0 – 0.4  
+- Rationale:  
+  Represents stable and predictable driving behavior with low current transients.  
+  A trapezoidal function ensures full membership for consistently smooth driving, while allowing a gradual transition as dynamic behavior increases.
+
+---
+
+**Normal (Triangular)**  
+- Approximate range: 0.3 – 0.7  
+- Rationale:  
+  Represents typical real-world driving behavior.  
+  The triangular shape reflects that moderate driving is most representative around the center of this range, decreasing progressively toward both smoother and more aggressive styles.
+
+---
+
+**Aggressive (Trapezoidal)**  
+- Approximate range: 0.6 – 1.0  
+- Rationale:  
+  Represents highly dynamic driving characterized by frequent power transients and elevated thermal stress.  
+  Early activation of this region enables anticipatory power derating before safety limits are reached.
+
+---
+
+#### Design Considerations
+
+- Overlapping membership functions ensure smooth adaptation to changing driving behavior.
+- The use of trapezoidal functions for extreme behaviors (Smooth and Aggressive) improves robustness against noise.
+- The neuro-fuzzy system leverages this varia
+
 
 ## 5. Scope and Assumptions
 
