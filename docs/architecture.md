@@ -227,7 +227,7 @@ These rules ensure battery safety and system longevity and have implicit priorit
 
 #### Nominal Operation Rules
 
-- **R4:** IF SoC is Medium AND Temperature is Ideal AND Driving Style is Normal → SOP Limit is Nominal  
+- **R4:** IF SoC is Normal AND Temperature is Ideal AND Driving Style is Normal → SOP Limit is Nominal  
 - **R5:** IF SoC is High AND Temperature is Ideal AND Driving Style is Normal → SOP Limit is Nominal  
 
 ---
@@ -240,7 +240,7 @@ These rules ensure battery safety and system longevity and have implicit priorit
 
 #### Transitional Rules
 
-- **R7:** IF SoC is Medium AND Temperature is Ideal AND Driving Style is Economic → SOP Limit is Nominal  
+- **R7:** IF SoC is Normal AND Temperature is Ideal AND Driving Style is Economic → SOP Limit is Nominal  
 - **R8:** IF SoC is High AND Temperature is Cold → SOP Limit is Nominal  
 
 ---
