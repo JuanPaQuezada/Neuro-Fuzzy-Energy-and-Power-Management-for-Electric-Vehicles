@@ -200,6 +200,9 @@ Rather than commanding power directly, the controller provides a supervisory pow
 - Overlapping membership functions ensure smooth transitions between power levels.
 - Safety-critical overrides remain outside the neuro-fuzzy inference system.
 
+The term "Nominal" is used to explicitly denote proximity to the battery's nominal power envelope, rather than a generic operating condition.
+
+
 ### 4.5 Fuzzy Rule Base
 
 The neuro-fuzzy inference system employs a compact yet expressive rule base designed to supervise battery power availability under varying operational conditions.
